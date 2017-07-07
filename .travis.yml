@@ -1,12 +1,23 @@
 language: php
-dist: xenial
+
+dist: xenial 
+
 php:
- - 7.0
-   env: TYPO3=^8.7 PHPUNIT=6.2
+- 7.0
+
+env:
+- BD=pgsql
+
+before_install:
+- sudo apt-get update -q
+- sudo apt-get install apache2 -y
+
+install: ./install-dependencies.sh
+
+before_script: true
 
 script: 
- - phpunit Test.php
-# Customize when the notification emails are sent.
+- phpunit Test.php
 
 notifications:
  email:
